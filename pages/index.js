@@ -54,11 +54,14 @@ export default () =>
       <div className="titles">
         <h1>Tigrovi</h1>
         <p>
-          Lorem Ipsum je jednostavno probni tekst koji se koristi u tiskarskoj i slovoslagarskoj industriji. Lorem Ipsum postoji kao industrijski standard još od 16-og stoljeća, kada je nepoznati tiskar uzeo tiskarsku galiju slova i posložio ih da bi napravio knjigu s uzorkom tiska.
+          Lorem Ipsum je jednostavno probni tekst koji se koristi u tiskarskoj i slovoslagarskoj
+          industriji. Lorem Ipsum postoji kao industrijski standard još od 16-og stoljeća, kada je
+          nepoznati tiskar uzeo tiskarsku galiju slova i posložio ih da bi napravio knjigu s uzorkom
+          tiska.
         </p>
         <div style={{ marginTop: 20, textAlign: 'right' }}>
           <Link prefetch href="/hero">
-            <Button>Heros</Button>
+            <Button>Heroes</Button>
           </Link>
         </div>
       </div>
