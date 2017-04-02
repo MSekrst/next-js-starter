@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import Switch from 'rc-switch'
+import 'rc-switch/assets/index.css'
 
 import Layout from '../../src/components/Layout'
 import Hero from '../../src/components/Hero'
@@ -7,10 +9,18 @@ const HeroesWrapper = styled.div`
   margin: 0 5% 0 5%;
 `
 
-const Title = styled.h1`
+const TitleWrapper = styled.div`
+  width: 100%;
   padding: 20px 50px 20px 50px;
-  margin-bottom: 0;
+`
+
+const FilterWrapper = styled.div`
+  float: right;
+`
+
+const Title = styled.h1`
   font-weight: 900;
+  float:left;
 `
 
 const data = [
@@ -85,7 +95,13 @@ const renderHeroes = () => {
 export default () =>
   <Layout title="Heroes">
     <HeroesWrapper>
-      <Title>Heroes</Title>
+      <TitleWrapper>
+        <Title>Heroes</Title>
+        <FilterWrapper>
+          <Switch />
+        </FilterWrapper>
+        <br />
+      </TitleWrapper>
       <hr />
       {renderHeroes()}
     </HeroesWrapper>

@@ -7,6 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "next": "^2.0.1",
+    "rc-switch": "^1.4.3",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "styled-components": "^1.4.4"
