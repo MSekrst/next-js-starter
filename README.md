@@ -7,3 +7,5 @@
 <li>After successful module instalation you can run project with <code>npm run dev</code>
 <li>If everything went right you can now see app at <a href="localhost:3000">localhost:3000</a>
 </ul>
+
+<a href="https://zeit.co/blog/next2">Getting started with Next.js 2.0</a>
