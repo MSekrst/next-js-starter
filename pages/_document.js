@@ -20,10 +20,10 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html>
+      <html lang="en">
         <Head>
           <title>Tigrovi</title>
-          <link rel="shortcut icon" type="image/png" href="static/img/favicon.png" />
+          <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.png" />
         </Head>
         <body>
           <Main />

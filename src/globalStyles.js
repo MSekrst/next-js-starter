@@ -1,3 +1,5 @@
+/* eslint no-unused-expressions:0 */
+
 import { injectGlobal } from 'styled-components'
 
 injectGlobal`
@@ -16,5 +18,11 @@ injectGlobal`
   a{
     color: black;
     text-decoration: none;
+  }
+  
+  hr {
+    border-color: rgba(146, 57, 255, 0.75);
+    backgorund-color: rgba(146, 57, 255, 0.75);
+    color: rgba(146, 57, 255, 0.75);
   }
 `

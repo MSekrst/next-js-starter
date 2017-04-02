@@ -34,6 +34,7 @@ const InfoWrapper = styled.div`
   float: ${props => props.right ? 'right' : 'left'};
   width: calc(100% - 330px);
   text-align: center;
+  font-family: 'Source Code Pro', monospace;
 `
 
 const Name = styled.h1`
@@ -51,15 +52,19 @@ const Specialities = styled.h3`
 const Role = styled.h3`
   margin: 0;
   padding: 5px 0 5px 0;
+  color: rgba(146, 57, 255, 0.75);
 `
 
 const Hero = ({ name, picture, role, specialities, description, contact, right }) => (
   <HeroWrapper>
     <ContactsWrapper right={right}>
       { contact.fb && <a href={contact.fb}><Contact src="/static/img/fb.png" alt="facebook" /></a> }
-      { contact.in && <a href={contact.in}><Contact src="/static/img/linkedin.png" alt="linkedin" /></a> }
-      { contact.github && <a href={contact.github}><Contact src="/static/img/github.png" alt="github" /></a> }
-      { contact.mail && <a href={contact.mail}><Contact src="/static/img/mail.png" alt="mail" /></a> }
+      { contact.in && <a href={contact.in}>
+        <Contact src="/static/img/linkedin.png" alt="linkedin" /></a> }
+      { contact.github && <a href={contact.github}>
+        <Contact src="/static/img/github.png" alt="github" /></a> }
+      { contact.mail && <a href={`mailto:${contact.mail}`}>
+        <Contact src="/static/img/mail.png" alt="mail" /></a> }
     </ContactsWrapper>
     <Picture src={picture} right={right} />
     <InfoWrapper right={right}>
@@ -70,9 +75,6 @@ const Hero = ({ name, picture, role, specialities, description, contact, right }
         {description}
       </p>
     </InfoWrapper>
-    {/*<Role>{role}</Role>*/}
-    {/*<Specialities>{specialities}</Specialities>*/}
-    {/*<Description>{description}</Description>*/}
   </HeroWrapper>
 )
 

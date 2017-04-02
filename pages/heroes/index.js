@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import Layout from '../../src/components/Layout'
-import Hero from '../../src/components/Hero';
+import Hero from '../../src/components/Hero'
 
 const HeroesWrapper = styled.div`
   margin: 0 5% 0 5%;
@@ -53,7 +53,10 @@ const data = [
     picture: '/static/img/matija.jpeg',
     role: 'Developer',
     specialities: 'Backend + Frontend',
-    description: 'Lorem ipsum dolor sit amet...',
+    description: `Currently tackling fourth year of Software Engineering at FER Zagreb. 
+    Passionate about web development. Enjoys writing fast and scalable Node APIs with 
+    a bit of React twist. Currently working as software intern in SofaScore.
+    Check his recent projects at GitHub.`,
     contact: {
       fb: 'https://www.facebook.com/matija.sekrst',
       in: 'https://www.linkedin.com/in/matija-sekrst/',
@@ -69,7 +72,10 @@ const renderHeroes = () => {
   for (const i in data) {
     const h = data[i]
 
-    ret.push(<Hero key={cnt++} name={h.name} picture={h.picture} role={h.role} specialities={h.specialities} description={h.description} contact={h.contact} right={i % 2 !== 0} />)
+    ret.push(<Hero
+      key={cnt++} name={h.name} picture={h.picture} role={h.role} specialities={h.specialities}
+      description={h.description} contact={h.contact} right={i % 2 !== 0}
+    />)
     ret.push(<hr key={cnt++} />)
   }
 

@@ -47,19 +47,17 @@ const Cover = styled(FullCover) `
 `
 
 export default () =>
-  <Layout
-    showHeader={false}
-    title="Tigrovi">
+  <Layout showHeader={false} title="Tigrovi">
     <HomeWrapper>
       <Cover />
       <div className="titles">
         <h1>Tigrovi</h1>
         <p>
           Four people are coming to make history.<br /> We are ready to solve any task that
-          comes upon us. Our web applications are blazing fast and use the hottest web technology available.
-          We utilize React with Node to make isomorphic web apps of 21st century.
-          Heard for service workers, progressive web apps, styled-components, flow... for us it doesn&apos;t matter,
-          we&apos;ve tried it all.
+          comes upon us. Our web applications are blazing fast and use the hottest web technology
+          available. We utilize React with Node to make isomorphic web apps of 21st century.
+          Heard for service workers, progressive web apps, styled-components, flow... for us it
+          doesn&apos;t matter, we&apos;ve tried it all.
         </p>
         <div style={{ marginTop: 20, textAlign: 'right' }}>
           <Link prefetch href="/heroes">
