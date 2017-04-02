@@ -5,8 +5,8 @@ import styled from 'styled-components'
 
 const Header = styled.header`
   margin: -20px;
-  padding: 10px;
-  background-color: rgba(146, 57, 255, 0.75);
+  padding: 30px;
+  text-align: center;
 `
 
 const Layout = ({ children, title, showHeader }) => (
@@ -19,7 +19,17 @@ const Layout = ({ children, title, showHeader }) => (
 
     {showHeader &&
       <Header>
-        <Link prefetch href="/"><a href="/"><img src="/static/img/logo.png" alt="Tigrovi" width={'50px'} height={'50px'} /></a></Link>
+        <Link
+          prefetch
+          href="/"
+        >
+          <a>
+            <img
+              style={{ width: 50, height: 50 }}
+              src="/static/img/logo.png"
+              alt="Tigrovi" />
+          </a>
+        </Link>
       </Header>
     }
 
