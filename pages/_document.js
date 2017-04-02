@@ -22,7 +22,8 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-          <title>Hackaton</title>
+          <title>Tigrovi</title>
+          <link rel="shortcut icon" type="image/png" href="static/img/favicon.png" />
         </Head>
         <body>
           <Main />

@@ -14,7 +14,7 @@ injectGlobal`
   }
   
   a{
-    colro: black;
+    color: black;
     text-decoration: none;
   }
 `

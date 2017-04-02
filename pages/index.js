@@ -21,6 +21,7 @@ const HomeWrapper = styled(FullCover) `
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center; 
+  
   .titles{
     width: 500px;
     max-width: 90%;
@@ -48,19 +49,20 @@ const Cover = styled(FullCover) `
 export default () =>
   <Layout
     showHeader={false}
-    title="Hackaton">
+    title="Tigrovi">
     <HomeWrapper>
       <Cover />
       <div className="titles">
         <h1>Tigrovi</h1>
         <p>
-          Lorem Ipsum je jednostavno probni tekst koji se koristi u tiskarskoj i slovoslagarskoj
-          industriji. Lorem Ipsum postoji kao industrijski standard još od 16-og stoljeća, kada je
-          nepoznati tiskar uzeo tiskarsku galiju slova i posložio ih da bi napravio knjigu s uzorkom
-          tiska.
+          Four people are coming to make history.<br /> We are ready to solve any task that
+          comes upon us. Our web applications are blazing fast and use the hottest web technology available.
+          We utilize React with Node to make isomorphic web apps of 21st century.
+          Heard for service workers, progressive web apps, styled-components, flow... for us it doesn&apos;t matter,
+          we&apos;ve tried it all.
         </p>
         <div style={{ marginTop: 20, textAlign: 'right' }}>
-          <Link prefetch href="/hero">
+          <Link prefetch href="/heroes">
             <Button>Heroes</Button>
           </Link>
         </div>

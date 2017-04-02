@@ -1,6 +1,13 @@
 import React, { PropTypes } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
+import styled from 'styled-components'
+
+const Header = styled.header`
+  margin: -20px;
+  padding: 10px;
+  background-color: rgba(146, 57, 255, 0.75);
+`
 
 const Layout = ({ children, title, showHeader }) => (
   <div style={{ padding: 20 }}>
@@ -11,12 +18,9 @@ const Layout = ({ children, title, showHeader }) => (
     </Head>
 
     {showHeader &&
-      <header>
-        <nav>
-          <Link href="/"><a>Home</a></Link>
-          <Link prefetch href="/hero"><a>Hero</a></Link>
-        </nav>
-      </header>
+      <Header>
+        <Link prefetch href="/"><a href="/"><img src="/static/img/logo.png" alt="Tigrovi" width={'50px'} height={'50px'} /></a></Link>
+      </Header>
     }
 
     {children}
@@ -31,7 +35,7 @@ Layout.propTypes = {
 }
 
 Layout.defaultProps = {
-  title: 'Hackaton',
+  title: 'Tigrovi',
   showHeader: true,
 }
 
