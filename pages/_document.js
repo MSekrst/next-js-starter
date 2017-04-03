@@ -24,7 +24,7 @@ export default class MyDocument extends Document {
         <Head>
           <title>Tigrovi</title>
           <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.png" />
-          <link rel="stylesheet" type="text/css" href="/static/css/index.css" />
+          <link rel="stylesheet" type="text/css" href="/static/css/switch.css" />
         </Head>
         <body>
           <Main />

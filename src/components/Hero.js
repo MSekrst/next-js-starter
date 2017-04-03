@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react'
-import Link from 'next/link'
 import styled from 'styled-components'
 
 const HeroWrapper = styled.div`
-  padding: 30px;
+  padding: 60px 30px;
   height: 230px;
+  transition: 0.5s all;
 `
 
 const ContactsWrapper = styled.div`
@@ -18,28 +18,46 @@ const ContactsWrapper = styled.div`
 `
 
 const Contact = styled.img`
-  height: 30px;
-  margin: 5px;
+  height: 20px;
+  margin: 10px;
+  cursor: pointer;
 `
 
 const Picture = styled.img`
+  width: 200px;
+  height: 200px;
+  transform: rotate(-45deg);
+  transition: 0.3s all;
+`
+const PictureWrapper = styled.div`
   float: ${props => props.right ? 'right' : 'left'};
-  margin: 0 10px 0 10px;
-  width: 230px;
-  height: 230px;
-  border-radius: 50%;
+  margin: 20px;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  transform: rotate(45deg);
+  transition: 0.3s all;
+  &:hover{
+    transform: rotate(60deg);
+    border-radius: 50%;
+    & img{
+      transform: rotate(-60deg);
+    }
+  }
 `
 
 const InfoWrapper = styled.div`
   float: ${props => props.right ? 'right' : 'left'};
+  text-align: ${props => props.right ? 'left' : 'right'};
   width: calc(100% - 330px);
-  text-align: center;
   font-family: 'Source Code Pro', monospace;
 `
 
 const Name = styled.h1`
   margin: 0;
   padding: 10px 0 5px;
+  font-size: 70px;
+  font-family: 'Open-sans', sans-serif;
   font-weight: 700;
 `
 
@@ -58,15 +76,17 @@ const Role = styled.h3`
 const Hero = ({ name, picture, role, specialities, description, contact, right }) => (
   <HeroWrapper>
     <ContactsWrapper right={right}>
-      { contact.fb && <a href={contact.fb}><Contact src="/static/img/fb.png" alt="facebook" /></a> }
-      { contact.in && <a href={contact.in}>
-        <Contact src="/static/img/linkedin.png" alt="linkedin" /></a> }
-      { contact.github && <a href={contact.github}>
-        <Contact src="/static/img/github.png" alt="github" /></a> }
-      { contact.mail && <a href={`mailto:${contact.mail}`}>
-        <Contact src="/static/img/mail.png" alt="mail" /></a> }
+      {contact.fb && <a href={contact.fb}><Contact src="/static/img/fb.png" alt="facebook" /></a>}
+      {contact.in && <a href={contact.in}>
+        <Contact src="/static/img/linkedin.png" alt="linkedin" /></a>}
+      {contact.github && <a href={contact.github}>
+        <Contact src="/static/img/github.png" alt="github" /></a>}
+      {contact.mail && <a href={`mailto:${contact.mail}`}>
+        <Contact src="/static/img/mail.png" alt="mail" /></a>}
     </ContactsWrapper>
-    <Picture src={picture} right={right} />
+    <PictureWrapper right={right}>
+      <Picture src={picture} />
+    </PictureWrapper>
     <InfoWrapper right={right}>
       <Name>{name}</Name><br />
       <Role>{role}</Role>
@@ -84,6 +104,7 @@ Hero.propTypes = {
   role: PropTypes.string,
   specialities: PropTypes.string,
   description: PropTypes.string,
+  contact: PropTypes.object,
   right: PropTypes.bool,
 }
 

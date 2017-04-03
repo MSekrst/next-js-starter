@@ -10,7 +10,7 @@ injectGlobal`
   body, html{
     height: 100%;
     margin: 0;
-    background: whitesmoke;
+    background: white;
     font-family: 'Source Code Pro', monospace;
     font-family: 'Open Sans', sans-serif;
   }
@@ -18,11 +18,5 @@ injectGlobal`
   a{
     color: black;
     text-decoration: none;
-  }
-  
-  hr {
-    border-color: rgba(146, 57, 255, 0.75);
-    backgorund-color: rgba(146, 57, 255, 0.75);
-    color: rgba(146, 57, 255, 0.75);
   }
 `

@@ -5,8 +5,8 @@ import styled from 'styled-components'
 
 const Header = styled.header`
   margin: -20px;
-  padding: 10px;
-  background-color: rgba(146, 57, 255, 0.75);
+  padding: 30px;
+  text-align: center;
 `
 
 const Layout = ({ children, title, showHeader }) => (
@@ -18,9 +18,19 @@ const Layout = ({ children, title, showHeader }) => (
     </Head>
 
     {showHeader &&
-      <Header>
-        <Link prefetch href="/"><a href="/"><img src="/static/img/logo.png" alt="Tigrovi" width={'50px'} height={'50px'} /></a></Link>
-      </Header>
+    <Header>
+      <Link
+        prefetch
+        href="/"
+      >
+        <a>
+          <img
+            style={{width: 50, height: 50}}
+            src="/static/img/logo.png"
+            alt="Tigrovi" />
+        </a>
+      </Link>
+    </Header>
     }
 
     {children}
@@ -29,7 +39,7 @@ const Layout = ({ children, title, showHeader }) => (
 )
 
 Layout.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.array.isRequired,
   title: PropTypes.string,
   showHeader: PropTypes.bool,
 }

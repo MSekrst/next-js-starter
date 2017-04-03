@@ -1,12 +1,24 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import Switch from 'rc-switch'
-import 'rc-switch/assets/index.css'
 
 import Layout from '../../src/components/Layout'
 import Hero from '../../src/components/Hero'
 
+const show = keyframes`
+  from {
+    transform: translateY(50px);
+    opacity: 0.01;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`
+
 const HeroesWrapper = styled.div`
   margin: 0 5% 0 5%;
+  animation: ${show} 0.5s ease-in-out;
 `
 
 const TitleWrapper = styled.div`
@@ -20,7 +32,12 @@ const FilterWrapper = styled.div`
 
 const Title = styled.h1`
   font-weight: 900;
-  float:left;
+  padding: 30px 50px 20px 50px;
+`
+
+const Divider = styled.hr`
+  width: 90%;
+  background-color: rgba(0,0,0,.2);
 `
 
 const data = [
@@ -78,31 +95,38 @@ const data = [
 const renderHeroes = () => {
   const ret = []
   let cnt = 0
-
-  for (const i in data) {
-    const h = data[i]
-
-    ret.push(<Hero
-      key={cnt++} name={h.name} picture={h.picture} role={h.role} specialities={h.specialities}
-      description={h.description} contact={h.contact} right={i % 2 !== 0}
-    />)
-    ret.push(<hr key={cnt++} />)
-  }
-
+  data.forEach((h, i) => {
+    ret.push(
+      <Hero
+        key={cnt++}
+        name={h.name}
+        picture={h.picture}
+        role={h.role}
+        specialities={h.specialities}
+        description={h.description}
+        contact={h.contact}
+        right={i % 2 !== 0}
+      />,
+      <Divider key={cnt++} />
+    )
+  })
+  ret.pop()
   return ret
 }
 
-export default () =>
+export default () => (
   <Layout title="Heroes">
+    {/*<Title>Heroes</Title>*/}
     <HeroesWrapper>
-      <TitleWrapper>
-        <Title>Heroes</Title>
-        <FilterWrapper>
-          <Switch />
-        </FilterWrapper>
-        <br />
-      </TitleWrapper>
+      {/*<TitleWrapper>*/}
+        {/*<Title>Heroes</Title>*/}
+        {/*<FilterWrapper>*/}
+          {/*<Switch />*/}
+        {/*</FilterWrapper>*/}
+        {/*<br />*/}
+      {/*</TitleWrapper>*/}
       <hr />
       {renderHeroes()}
     </HeroesWrapper>
   </Layout>
+)
