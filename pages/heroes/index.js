@@ -76,7 +76,7 @@ const data = [
     picture: '/static/img/bruna.jpeg',
     role: 'Team leader',
     specialities: 'Design + Frontend',
-    description: 'Lorem ipsum dolor sit amet...',
+    description: 'Atypical fourth year student of Software Engineering at FER Zagreb that primary loves art and likes to play with it through all of her project. Some of her first contacts with web development was last year on Combis hackathon and she would love to give this competition a new try to show her improvement. She was a part of App Start Contest Competition where she gain some experience in public speaking and fell in love more with web design and web development.',
     contact: {
       fb: 'https://www.facebook.com/bruna.andjelic',
       github: 'https://github.com/bAndelic',
