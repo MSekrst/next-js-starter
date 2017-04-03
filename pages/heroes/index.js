@@ -214,8 +214,6 @@ export default class Heroes extends PureComponent {
   }
 
   render() {
-    console.log(data, this.state.filter);
-
     return <Layout title="Heroes">
       <HeroesWrapper>
         <TitleWrapper>
