@@ -71,9 +71,10 @@ const FilterItem = styled.div`
 `
 
 const Label = styled.label`
-  width: 85px;
+  width: 110px;
   display: inline-block;
   font-weight: 300;
+  text-align: right;
 `
 
 const Divider = styled.hr`
@@ -218,7 +219,7 @@ export default class Heroes extends PureComponent {
     return <Layout title="Heroes">
       <HeroesWrapper>
         <TitleWrapper>
-          <Title>Oure Heroes</Title>
+          <Title>Our Heroes</Title>
           <FilterWrapper>
             <FilterItem>
               <Label>Design:</Label>
@@ -250,6 +251,7 @@ export default class Heroes extends PureComponent {
             </FilterItem>
           </FilterWrapper>
         </TitleWrapper>
+        <hr />
         {this.renderHeroes()}
       </HeroesWrapper>
     </Layout>
