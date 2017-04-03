@@ -68,7 +68,7 @@ const data = [
     picture: '/static/img/mihael.jpeg',
     role: 'Developer',
     specialities: 'Backend + Algorithms',
-    description: 'Lorem ipsum dolor sit amet...',
+    description: 'Studies Computer Science (4h year) at FER. Has experience in various projects (including web-sites, android apps and games). Wants to write fast and efficient apps. Check his recent projects at GitHub.',
     contact: {
       fb: 'https://www.facebook.com/mihael.marovic',
       in: 'https://www.linkedin.com/in/mihael-marovi%C4%87-27021a125/',
