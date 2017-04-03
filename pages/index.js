@@ -89,6 +89,13 @@ const Action = styled.div`
   animation-fill-mode: forwards;
   margin-top: 20;
   text-align: center;
+  & span{
+    display: none;
+    font-weight: bold;
+  }
+  & a:hover span{
+    display: inline-block;
+  }
 `
 
 export default () =>
@@ -98,7 +105,7 @@ export default () =>
       <div className="titles">
         <h1>Tigrovi</h1>
         <p>
-          Four people are coming to make history.<br /> We are ready to solve any task that
+          Four people are coming to make <span style={{ color: '#fffb00', fontWeight: 'bold' }}>history</span>.<br /> We are ready to solve any task that
           comes upon us. Our web applications are blazing fast and use the hottest web technology
           available. We utilize React with Node to make isomorphic web apps of 21st century.
           Heard for service workers, progressive web apps, styled-components, flow... for us it
@@ -106,7 +113,10 @@ export default () =>
         </p>
         <Action>
           <Link prefetch href="/heroes">
-            <Button style={{ fontWeight: 'bold' }}> Heroes </Button>
+            <Button style={{ fontWeight: 'bold' }}>
+              Heroes
+            <span>&nbsp; -&gt;</span>
+            </Button>
           </Link>
         </Action>
       </div>

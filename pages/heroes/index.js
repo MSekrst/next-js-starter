@@ -36,8 +36,8 @@ const Title = styled.h1`
 `
 
 const Divider = styled.hr`
-  width: 90%;
-  background-color: rgba(0,0,0,.2);
+  width: 95%;
+  border-color: rgba(0,0,0,.12);
 `
 
 const data = [
@@ -57,7 +57,7 @@ const data = [
     picture: '/static/img/frane.jpeg',
     role: 'Developer',
     specialities: 'Frontend + Backend',
-    description: 'Lorem ipsum dolor sit amet...',
+    description: 'Third year student at FER, Zagreb. Has 2 years expirience in web and mobile development. Really passionate about technology, programming and web. Favourite technologies are: React, RN, Node.js and Go.',
     contact: {
       fb: 'https://www.facebook.com/frane.polic.1',
       github: 'https://github.com/fPolic',
@@ -116,16 +116,15 @@ const renderHeroes = () => {
 
 export default () => (
   <Layout title="Heroes">
-    {/*<Title>Heroes</Title>*/}
     <HeroesWrapper>
-      {/*<TitleWrapper>*/}
-        {/*<Title>Heroes</Title>*/}
-        {/*<FilterWrapper>*/}
-          {/*<Switch />*/}
-        {/*</FilterWrapper>*/}
-        {/*<br />*/}
-      {/*</TitleWrapper>*/}
-      <hr />
+      {/*<TitleWrapper>
+        <Title>Heroes</Title>
+        <FilterWrapper>
+          <Switch />
+        </FilterWrapper>
+        <br />
+      </TitleWrapper>*/}
+      <Divider />
       {renderHeroes()}
     </HeroesWrapper>
   </Layout>
