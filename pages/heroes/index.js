@@ -1,3 +1,4 @@
+import React, { PureComponent } from 'react';
 import styled, { keyframes } from 'styled-components'
 import Switch from 'rc-switch'
 
@@ -23,21 +24,50 @@ const HeroesWrapper = styled.div`
 
 const TitleWrapper = styled.div`
   width: 100%;
-  padding: 20px 50px 20px 50px;
+  height: 150px;
 `
 
 const FilterWrapper = styled.div`
+  height: 100%;
   float: right;
+  padding-right: 50px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 `
 
 const Title = styled.h1`
   font-weight: 900;
-  padding: 30px 50px 20px 50px;
+  font-size: 50px;
+  padding-top: 5px;
+  float: left;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+`
+
+const FilterItem = styled.div`
+  margin-bottom: 10px;
+`
+
+const Label = styled.label`
+  width: 85px;
+  display: inline-block;
+  font-weight: 300;
 `
 
 const Divider = styled.hr`
   width: 90%;
   background-color: rgba(0,0,0,.2);
+`
+const Message = styled.h1`
+  padding: 35px;
+  text-align: center;
+  font-size: 35px;
+  font-weight: 700;
+  color: #9239ff;
 `
 
 const data = [
@@ -45,7 +75,7 @@ const data = [
     name: 'Bruna Anđelić',
     picture: '/static/img/bruna.jpeg',
     role: 'Team leader',
-    specialities: 'Dizajn + Frontend',
+    specialities: 'Design + Frontend',
     description: 'Lorem ipsum dolor sit amet...',
     contact: {
       fb: 'https://www.facebook.com/bruna.andjelic',
@@ -79,7 +109,7 @@ const data = [
     name: 'Matija Šekrst',
     picture: '/static/img/matija.jpeg',
     role: 'Developer',
-    specialities: 'Backend + Frontend',
+    specialities: 'Frontend + Backend',
     description: `Currently tackling fourth year of Software Engineering at FER Zagreb. 
     Passionate about web development. Enjoys writing fast and scalable Node APIs with 
     a bit of React twist. Currently working as software intern in SofaScore.
@@ -92,41 +122,104 @@ const data = [
     },
   }]
 
-const renderHeroes = () => {
-  const ret = []
-  let cnt = 0
-  data.forEach((h, i) => {
-    ret.push(
-      <Hero
-        key={cnt++}
-        name={h.name}
-        picture={h.picture}
-        role={h.role}
-        specialities={h.specialities}
-        description={h.description}
-        contact={h.contact}
-        right={i % 2 !== 0}
-      />,
-      <Divider key={cnt++} />
-    )
+const filterData = (filter) => {
+  let filtered = [... data];
+
+  data.forEach(item => {
+    let del = true;
+
+    filter.forEach(fil => {
+      if (item.specialities.includes(fil)) {
+        del = false;
+      }
+    })
+
+    if (del) {
+      filtered = filtered.filter(i => i !== item)
+    }
   })
-  ret.pop()
-  return ret
+
+  return filtered;
 }
 
-export default () => (
-  <Layout title="Heroes">
-    {/*<Title>Heroes</Title>*/}
-    <HeroesWrapper>
-      {/*<TitleWrapper>*/}
-        {/*<Title>Heroes</Title>*/}
-        {/*<FilterWrapper>*/}
-          {/*<Switch />*/}
-        {/*</FilterWrapper>*/}
-        {/*<br />*/}
-      {/*</TitleWrapper>*/}
-      <hr />
-      {renderHeroes()}
-    </HeroesWrapper>
-  </Layout>
-)
+
+export default class Heroes extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = { filter: ['Design', 'Frontend', 'Backend', 'Algorithms'] };
+
+    this.renderHeroes = this.renderHeroes.bind(this);
+    this.filterChange = this.filterChange.bind(this);
+  }
+
+  renderHeroes = () => {
+    const ret = []
+    let cnt = 0
+
+    const filtered = filterData(this.state.filter);
+
+    if (!filtered.length) {
+      return <Message>No Heroes selected :(</Message>
+    }
+
+    filtered.forEach((h, i) => {
+      ret.push(
+        <Hero
+          key={cnt++}
+          name={h.name}
+          picture={h.picture}
+          role={h.role}
+          specialities={h.specialities}
+          description={h.description}
+          contact={h.contact}
+          right={i % 2 !== 0}
+        />,
+        <Divider key={cnt++} />,
+      )
+    })
+    ret.pop()
+    return ret
+  }
+
+  filterChange = (value, field) => {
+    let filter = [... this.state.filter]
+
+    if (value) {
+      filter.push(field)
+    } else {
+      filter = filter.filter(i => i !== field)
+    }
+
+    this.setState({ ...this.state, filter })
+  }
+
+  render() {
+    console.log(data, this.state.filter);
+
+    return <Layout title="Heroes">
+      <HeroesWrapper>
+        <hr />
+        <TitleWrapper>
+          <Title>Heroes</Title>
+          <FilterWrapper>
+            <FilterItem>
+              <Label>Design:</Label>
+              <Switch className="switch-color" defaultChecked onChange={(e) => { this.filterChange(e, 'Design') }} /></FilterItem>
+            <FilterItem>
+              <Label>Frontend:</Label>
+              <Switch className="switch-color" defaultChecked onChange={(e) => { this.filterChange(e, 'Frontend') }} /></FilterItem>
+            <FilterItem>
+              <Label>Backend:</Label>
+              <Switch className="switch-color" defaultChecked onChange={(e) => { this.filterChange(e, 'Backend') }} /></FilterItem>
+            <FilterItem>
+              <Label>Algorithms: </Label>
+              <Switch className="switch-color" defaultChecked onChange={(e) => { this.filterChange(e, 'Algorithms') }} /></FilterItem>
+          </FilterWrapper>
+        </TitleWrapper>
+        <hr />
+        {this.renderHeroes()}
+      </HeroesWrapper>
+    </Layout>
+  }
+}

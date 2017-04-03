@@ -39,7 +39,6 @@ const Layout = ({ children, title, showHeader }) => (
 )
 
 Layout.propTypes = {
-  children: PropTypes.array.isRequired,
   title: PropTypes.string,
   showHeader: PropTypes.bool,
 }
