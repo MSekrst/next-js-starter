@@ -106,7 +106,7 @@ const data = [
     picture: '/static/img/frane.jpeg',
     role: 'Developer',
     specialities: 'Frontend + Backend',
-    description: 'Third year student at FER, Zagreb. Has 2 years expirience in web and mobile development. Really passionate about technology, programming and web. Favourite technologies are: React, RN, Node.js and Go.',
+    description: 'Third year student at FER, Zagreb. Has 2 years experience in web and mobile development. Really passionate about technology, programming and web. Favourite technologies are: React, RN, Node.js and Go.',
     contact: {
       fb: 'https://www.facebook.com/frane.polic.1',
       github: 'https://github.com/fPolic',
