@@ -1,7 +1,13 @@
-import React, { PureComponent } from 'react';
+// @flow
+
+import React, { PureComponent } from 'react'
+import { bindActionCreators } from 'redux'
 import styled, { keyframes } from 'styled-components'
+import withRedux from 'next-redux-wrapper'
 import Switch from 'rc-switch'
 
+import { store as initStore } from '../../src/store'
+import { getHeroes } from '../../src/modules/Heroes/actions'
 import Layout from '../../src/components/Layout'
 import Hero from '../../src/components/Hero'
 
@@ -88,67 +94,15 @@ const Message = styled.h1`
   color: #9239ff;
 `
 
-const data = [
-  {
-    name: 'Bruna Anđelić',
-    picture: '/static/img/bruna.jpeg',
-    role: 'Team leader',
-    specialities: 'Design + Frontend',
-    description: 'Atypical fourth year student of Software Engineering at FER Zagreb that primary loves art and likes to play with it through all of her project. Some of her first contacts with web development was last year on Combis hackathon and she would love to give this competition a new try to show her improvement. She was a part of App Start Contest Competition where she gain some experience in public speaking and fell in love more with web design and web development.',
-    contact: {
-      fb: 'https://www.facebook.com/bruna.andjelic',
-      github: 'https://github.com/bAndelic',
-      mail: 'bruna.andelic@fer.hr',
-    },
-  }, {
-    name: 'Frane Polić',
-    picture: '/static/img/frane.jpeg',
-    role: 'Developer',
-    specialities: 'Frontend + Backend',
-    description: 'Third year student at FER, Zagreb. Has 2 years expirience in web and mobile development. Really passionate about technology, programming and web. Favourite technologies are: React, RN, Node.js and Go.',
-    contact: {
-      fb: 'https://www.facebook.com/frane.polic.1',
-      github: 'https://github.com/fPolic',
-      mail: 'frane.polic@fer.hr',
-    },
-  }, {
-    name: 'Mihael Marović',
-    picture: '/static/img/mihael.jpeg',
-    role: 'Developer',
-    specialities: 'Backend + Algorithms',
-    description: 'Studies Computer Science (4h year) at FER. Has experience in various projects (including web-sites, android apps and games). Wants to write fast and efficient apps. Check his recent projects at GitHub.',
-    contact: {
-      fb: 'https://www.facebook.com/mihael.marovic',
-      in: 'https://www.linkedin.com/in/mihael-marovi%C4%87-27021a125/',
-      github: 'https://github.com/mihaelM',
-      mail: 'mihael.marovic@fer.hr',
-    },
-  }, {
-    name: 'Matija Šekrst',
-    picture: '/static/img/matija.jpeg',
-    role: 'Developer',
-    specialities: 'Frontend + Backend',
-    description: `Currently tackling fourth year of Software Engineering at FER Zagreb. 
-    Passionate about web development. Enjoys writing fast and scalable Node APIs with 
-    a bit of React twist. Currently working as software intern in SofaScore.
-    Check his recent projects at GitHub.`,
-    contact: {
-      fb: 'https://www.facebook.com/matija.sekrst',
-      in: 'https://www.linkedin.com/in/matija-sekrst/',
-      github: 'https://github.com/MSekrst',
-      mail: 'matija.sekrst@fer.hr',
-    },
-  }]
+const filterData = (filter, data) => {
+  let filtered = [...data]
 
-const filterData = (filter) => {
-  let filtered = [...data];
+  data.forEach((item) => {
+    let del = true
 
-  data.forEach(item => {
-    let del = true;
-
-    filter.forEach(fil => {
+    filter.forEach((fil) => {
       if (item.specialities.includes(fil)) {
-        del = false;
+        del = false
       }
     })
 
@@ -157,27 +111,46 @@ const filterData = (filter) => {
     }
   })
 
-  return filtered;
+  return filtered
 }
 
+class Heroes extends PureComponent {
 
-export default class Heroes extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = { filter: ['Design', 'Frontend', 'Backend', 'Algorithms'] };
-
-    this.renderHeroes = this.renderHeroes.bind(this);
-    this.filterChange = this.filterChange.bind(this);
+  static getInitialProps({ isServer }) {
+    return { isServer }
   }
 
-  renderHeroes = () => {
+  state = {
+    filter: ['Design', 'Frontend', 'Backend', 'Algorithms'],
+  }
+
+  componentDidMount() {
+    this.props.getHeroes()
+  }
+
+  filterChange(value, field) {
+    let filter = [...this.state.filter]
+
+    if (value) {
+      filter.push(field)
+    } else {
+      filter = filter.filter(i => i !== field)
+    }
+
+    this.setState({ ...this.state, filter })
+  }
+
+  renderHeroes() {
     const ret = []
     let cnt = 0
 
-    const filtered = filterData(this.state.filter);
+    const filtered = filterData(this.state.filter, this.props.data)
 
-    if (!filtered.length) {
+    if (!filtered.length && !(this.props.data && this.props.data.length)) {
+      return <Message> Loading ... </Message>
+    }
+
+    if (!filtered.length && this.props.data && this.props.data.length) {
       return <Message>No Heroes selected :(</Message>
     }
 
@@ -200,58 +173,56 @@ export default class Heroes extends PureComponent {
     return ret
   }
 
-  filterChange = (value, field) => {
-    let filter = [... this.state.filter]
-
-    if (value) {
-      filter.push(field)
-    } else {
-      filter = filter.filter(i => i !== field)
-    }
-
-    this.setState({ ...this.state, filter })
-  }
-
   render() {
-    console.log(data, this.state.filter);
-
-    return <Layout title="Heroes">
-      <HeroesWrapper>
-        <TitleWrapper>
-          <Title>Oure Heroes</Title>
-          <FilterWrapper>
-            <FilterItem>
-              <Label>Design:</Label>
-              <Switch
-                className="switch-color"
-                defaultChecked
-                onChange={(e) => { this.filterChange(e, 'Design') }} />
-            </FilterItem>
-            <FilterItem>
-              <Label>Frontend:</Label>
-              <Switch
-                className="switch-color"
-                defaultChecked
-                onChange={(e) => { this.filterChange(e, 'Frontend') }} />
-            </FilterItem>
-            <FilterItem>
-              <Label>Backend:</Label>
-              <Switch
-                className="switch-color"
-                defaultChecked
-                onChange={(e) => { this.filterChange(e, 'Backend') }} />
-            </FilterItem>
-            <FilterItem>
-              <Label>Algorithms: </Label>
-              <Switch
-                className="switch-color"
-                defaultChecked
-                onChange={(e) => { this.filterChange(e, 'Algorithms') }} />
-            </FilterItem>
-          </FilterWrapper>
-        </TitleWrapper>
-        {this.renderHeroes()}
-      </HeroesWrapper>
-    </Layout>
+    return (
+      <Layout title="Heroes">
+        <HeroesWrapper>
+          <TitleWrapper>
+            <Title>Oure Heroes</Title>
+            <FilterWrapper>
+              <FilterItem>
+                <Label>Design:</Label>
+                <Switch
+                  className="switch-color"
+                  defaultChecked
+                  onChange={(e) => { this.filterChange(e, 'Design') }} />
+              </FilterItem>
+              <FilterItem>
+                <Label>Frontend:</Label>
+                <Switch
+                  className="switch-color"
+                  defaultChecked
+                  onChange={(e) => { this.filterChange(e, 'Frontend') }} />
+              </FilterItem>
+              <FilterItem>
+                <Label>Backend:</Label>
+                <Switch
+                  className="switch-color"
+                  defaultChecked
+                  onChange={(e) => { this.filterChange(e, 'Backend') }} />
+              </FilterItem>
+              <FilterItem>
+                <Label>Algorithms: </Label>
+                <Switch
+                  className="switch-color"
+                  defaultChecked
+                  onChange={(e) => { this.filterChange(e, 'Algorithms') }} />
+              </FilterItem>
+            </FilterWrapper>
+          </TitleWrapper>
+          {this.renderHeroes()}
+        </HeroesWrapper>
+      </Layout>
+    )
   }
 }
+
+export default withRedux(
+  () => initStore,
+  state => ({
+    data: state.heroes
+  }),
+  dispatch => ({
+    getHeroes: bindActionCreators(getHeroes, dispatch)
+  })
+)(Heroes)

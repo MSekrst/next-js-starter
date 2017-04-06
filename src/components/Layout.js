@@ -1,4 +1,6 @@
-import React, { PropTypes } from 'react'
+// @flow
+
+import type { Element } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import styled from 'styled-components'
@@ -9,7 +11,13 @@ const Header = styled.header`
   text-align: center;
 `
 
-const Layout = ({ children, title, showHeader }) => (
+type Props = {
+  title?: string,
+  showHeader?: boolean,
+  children: Element<any>
+}
+
+const Layout = ({ children, title, showHeader }: Props) => (
   <div style={{ padding: 20 }}>
     <Head>
       <title>{title}</title>
@@ -17,31 +25,27 @@ const Layout = ({ children, title, showHeader }) => (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
 
-    {showHeader &&
-    <Header>
-      <Link
-        prefetch
-        href="/"
-      >
-        <a>
-          <img
-            style={{width: 50, height: 50}}
-            src="/static/img/logo.png"
-            alt="Tigrovi" />
-        </a>
-      </Link>
-    </Header>
+    {
+      showHeader &&
+      <Header>
+        <Link
+          prefetch
+          href="/"
+        >
+          <a>
+            <img
+              style={{ width: 50, height: 50 }}
+              src="/static/img/logo.png"
+              alt="Tigrovi" />
+          </a>
+        </Link>
+      </Header>
     }
 
     {children}
 
   </div>
 )
-
-Layout.propTypes = {
-  title: PropTypes.string,
-  showHeader: PropTypes.bool,
-}
 
 Layout.defaultProps = {
   title: 'Tigrovi',
