@@ -77,9 +77,10 @@ const FilterItem = styled.div`
 `
 
 const Label = styled.label`
-  width: 85px;
+  width: 110px;
   display: inline-block;
   font-weight: 300;
+  text-align: right;
 `
 
 const Divider = styled.hr`
