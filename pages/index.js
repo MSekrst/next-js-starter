@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components'
 import Link from 'next/link'
 import Layout from '../src/components/Layout'
-import { Button } from '../src/components/Styled'
+import { Button } from '../src/modules/Heroes/Styled'
 
 const FullCover = styled.div`
   top: 0;

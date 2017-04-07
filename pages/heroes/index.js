@@ -2,98 +2,23 @@
 
 import React, { PureComponent } from 'react'
 import { bindActionCreators } from 'redux'
-import styled, { keyframes } from 'styled-components'
 import withRedux from 'next-redux-wrapper'
 import Switch from 'rc-switch'
 
 import { store as initStore } from '../../src/store'
 import { getHeroes } from '../../src/modules/Heroes/actions'
 import Layout from '../../src/components/Layout'
-import Hero from '../../src/components/Hero'
-
-const show = keyframes`
-  from {
-    transform: translateY(50px);
-    opacity: 0.01;
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`
-
-const HeroesWrapper = styled.div`
-  margin: 0 5% 0 5%;
-  animation: ${show} 0.5s ease-in-out;
-`
-
-const TitleWrapper = styled.div`
-  width: 100%;
-  height: 150px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  & > *{
-    width: 50%;
-  }
-  @media (max-width:  980px) {
-    flex-direction: column;
-    height: auto;
-    margin-bottom: 20px;
-    & > *{
-      width: 100%;
-    }
-  }
-`
-
-const FilterWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-`
-
-const Title = styled.h1`
-  font-weight: 900;
-  font-size: 50px;
-  padding-top: 5px;
-  float: left;
-  display: flex;
-  border-right: 5px solid black;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  @media (max-width:  980px) {
-    border-right: none;
-  }
-`
-
-const FilterItem = styled.div`
-  margin-bottom: 10px;
-  & label{
-    font-family: 'Source Code Pro', monospace;
-  }
-`
-
-const Label = styled.label`
-  width: 110px;
-  display: inline-block;
-  font-weight: 300;
-  text-align: right;
-`
-
-const Divider = styled.hr`
-  width: 95%;
-  border-color: rgba(0,0,0,.12);
-`
-const Message = styled.h1`
-  padding: 35px;
-  text-align: center;
-  font-size: 50px;
-  font-weight: 300;
-  color: #9239ff;
-`
+import Hero from '../../src/modules/Heroes/components/Hero'
+import {
+  Message,
+  Title,
+  Divider,
+  Label,
+  FilterItem,
+  HeroesWrapper,
+  TitleWrapper,
+  FilterWrapper,
+} from '../../src/modules/Heroes/Styled'
 
 const filterData = (filter, data) => {
   let filtered = [...data]
@@ -186,28 +111,32 @@ class Heroes extends PureComponent {
                 <Switch
                   className="switch-color"
                   defaultChecked
-                  onChange={(e) => { this.filterChange(e, 'Design') }} />
+                  onChange={(e) => { this.filterChange(e, 'Design') }}
+                />
               </FilterItem>
               <FilterItem>
                 <Label>Frontend:</Label>
                 <Switch
                   className="switch-color"
                   defaultChecked
-                  onChange={(e) => { this.filterChange(e, 'Frontend') }} />
+                  onChange={(e) => { this.filterChange(e, 'Frontend') }}
+                />
               </FilterItem>
               <FilterItem>
                 <Label>Backend:</Label>
                 <Switch
                   className="switch-color"
                   defaultChecked
-                  onChange={(e) => { this.filterChange(e, 'Backend') }} />
+                  onChange={(e) => { this.filterChange(e, 'Backend') }}
+                />
               </FilterItem>
               <FilterItem>
                 <Label>Algorithms: </Label>
                 <Switch
                   className="switch-color"
                   defaultChecked
-                  onChange={(e) => { this.filterChange(e, 'Algorithms') }} />
+                  onChange={(e) => { this.filterChange(e, 'Algorithms') }}
+                />
               </FilterItem>
             </FilterWrapper>
           </TitleWrapper>
@@ -221,9 +150,9 @@ class Heroes extends PureComponent {
 export default withRedux(
   () => initStore,
   state => ({
-    data: state.heroes
+    data: state.heroes,
   }),
   dispatch => ({
-    getHeroes: bindActionCreators(getHeroes, dispatch)
-  })
+    getHeroes: bindActionCreators(getHeroes, dispatch),
+  }),
 )(Heroes)

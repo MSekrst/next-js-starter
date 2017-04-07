@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 export const Button = styled.a`
   background: black;
@@ -10,6 +10,7 @@ export const Button = styled.a`
   font-family: 'Source Code Pro', monospace;
   box-shadow: 0 5px 20px 0 rgba(0,0,0,.5);
 `
+
 export const HeroWrapper = styled.div`
   padding: 60px 30px;
   transition: 0.5s all;
@@ -110,4 +111,89 @@ export const Imgs = styled.div`
     width: 100%;
     flex-direction: column-reverse;
   }
+`
+
+export const show = keyframes`
+  from {
+    transform: translateY(50px);
+    opacity: 0.01;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`
+
+export const HeroesWrapper = styled.div`
+  margin: 0 5% 0 5%;
+  animation: ${show} 0.5s ease-in-out;
+`
+
+export const TitleWrapper = styled.div`
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  & > *{
+    width: 50%;
+  }
+  @media (max-width:  980px) {
+    flex-direction: column;
+    height: auto;
+    margin-bottom: 20px;
+    & > *{
+      width: 100%;
+    }
+  }
+`
+
+export const FilterWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+`
+
+export const Title = styled.h1`
+  font-weight: 900;
+  font-size: 50px;
+  padding-top: 5px;
+  float: left;
+  display: flex;
+  border-right: 5px solid black;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  @media (max-width:  980px) {
+    border-right: none;
+  }
+`
+
+export const FilterItem = styled.div`
+  margin-bottom: 10px;
+  & label{
+    font-family: 'Source Code Pro', monospace;
+  }
+`
+
+export const Label = styled.label`
+  width: 110px;
+  display: inline-block;
+  font-weight: 300;
+  text-align: right;
+`
+
+export const Divider = styled.hr`
+  width: 95%;
+  border-color: rgba(0,0,0,.12);
+`
+
+export const Message = styled.h1`
+  padding: 35px;
+  text-align: center;
+  font-size: 50px;
+  font-weight: 300;
+  color: #9239ff;
 `

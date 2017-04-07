@@ -11,8 +11,7 @@ import {
   Contact,
   Name,
   Role,
-
-} from './Styled'
+} from '../Styled'
 
 type ContactProp = {
   fb: string,
